@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Score Keeper</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <style>
+        .box {
+            display: flex;
+        }
+
+        .leftside {
+            font-size: 75px;
+            width: 3%;
+            flex-wrap: column;
+            align-items: center;
+        }
+
+        .scores {
+            width: 75%;
+            display: grid;
+            background-color: lightseagreen;
+            border: black solid 3px;
+            grid-column-gap: 5px;
+            grid-template-columns: 10% 13% 13% 13% 13% 13% 13%;
+            grid-template-rows: 2% 2% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 3% 3%;
+        }
+
+        .grid-item-1 {
+            display: none;
+            grid-row-start: 21;
+            grid-row-end: 20;
+            background-color: red;
+            grid-column-start: 2;
+        }
+
+        .grid-item-2 {
+            display: none;
+            grid-row-start: 21;
+            grid-row-end: 20;
+            background-color: red;
+            grid-column-start: 3;
+        }
+
+        .grid-item-3 {
+            display: none;
+            grid-row-start: 21;
+            grid-row-end: 20;
+            background-color: red;
+            grid-column-start: 4;
+        }
+
+        .grid-item-4 {
+            display: none;
+            grid-row-start: 21;
+            grid-row-end: 20;
+            background-color: red;
+            grid-column-start: 5;
+        }
+
+        .grid-item-5 {
+            display: none;
+            grid-row-start: 21;
+            grid-row-end: 20;
+            background-color: red;
+            grid-column-start: 6;
+        }
+
+        .grid-item-6 {
+            display: none;
+            grid-row-start: 21;
+            grid-row-end: 20;
+            background-color: red;
+            grid-column-start: 7;
+        }
+
+        .grid-item-team1 {
+            grid-row-start: -1;
+            grid-column-start: 2;
+        }
+
+        .grid-item-team2 {
+            grid-row-start: -1;
+            grid-column-start: 3;
+        }
+
+        .grid-item-team3 {
+            grid-row-start: -1;
+            grid-column-start: 4;
+        }
+
+        .grid-item-team4 {
+            grid-row-start: -1;
+            grid-column-start: 5;
+        }
+
+        .grid-item-team5 {
+            grid-row-start: -1;
+            grid-column-start: 6;
+        }
+
+        .grid-item-team6 {
+            grid-row-start: -1;
+            grid-column-start: 7;
+        }
+
+        .addPoints1 {
+            grid-row-start: -3;
+            order: 0;
+            grid-column-start: 2;
+        }
+
+        .addPoints2 {
+            grid-row-start: -3;
+            order: 0;
+            grid-column-start: 3;
+        }
+
+        .addPoints3 {
+            grid-row-start: -3;
+            order: 0;
+            grid-column-start: 4;
+        }
+
+        .addPoints4 {
+            grid-row-start: -3;
+            order: 0;
+            grid-column-start: 5;
+        }
+
+        .addPoints5 {
+            grid-row-start: -3;
+            order: 0;
+            grid-column-start: 6;
+        }
+
+        .addPoints6 {
+            grid-row-start: -3;
+            order: 0;
+            grid-column-start: 7;
+        }
+
+        .subtractPoints1 {
+            grid-row-start: -2;
+            order: 0;
+            grid-column-start: 2;
+        }
+
+        .subtractPoints2 {
+            grid-row-start: -2;
+            order: 0;
+            grid-column-start: 3;
+        }
+
+        .subtractPoints3 {
+            grid-row-start: -2;
+            order: 0;
+            grid-column-start: 4;
+        }
+
+        .subtractPoints4 {
+            grid-row-start: -2;
+            order: 0;
+            grid-column-start: 5;
+        }
+
+        .subtractPoints5 {
+            grid-row-start: -2;
+            order: 0;
+            grid-column-start: 6;
+        }
+
+        .subtractPoints6 {
+            grid-row-start: -2;
+            order: 0;
+            grid-column-start: 7;
+        }
+    </style>
+    <h1> Mrs. Luning's Class Score Card</h1>
+    <div class="box">
+        <div class="leftside">
+            <span>A</span>
+            <span>m</span>
+            <span>o</span>
+            <span>u</span>
+            <span>n</span>
+            <span>t</span>
+            <span> </span>
+            <span>o</span>
+            <span>f</span>
+            <span> </span>
+            <span>p</span>
+            <span>o</span>
+            <span>i</span>
+            <span>n</span>
+            <span>t</span>
+            <span>s</span>
+        </div>
+        <div class="scores">
+            <div class="grid-item-team1">Table 1</div><button class="addPoints1">Add</button><button class="subtractPoints1">Subtract</button>
+            <div class="grid-item-team2">Table 2</div><button class="addPoints2">Add</button><button class="subtractPoints2">Subtract</button>
+            <div class="grid-item-team3">Table 3</div><button class="addPoints3">Add</button><button class="subtractPoints3">Subtract</button>
+            <div class="grid-item-team4">Table 4</div><button class="addPoints4">Add</button><button class="subtractPoints4">Subtract</button>
+            <div class="grid-item-team5">Table 5</div><button class="addPoints5">Add</button><button class="subtractPoints5">Subtract</button>
+            <div class="grid-item-team6">Table 6</div><button class="addPoints6">Add</button><button class="subtractPoints6">Subtract</button>
+            <div class="grid-item-1"> </div>
+            <div class="grid-item-2"> </div>
+            <div class="grid-item-3"> </div>
+            <div class="grid-item-4"> </div>
+            <div class="grid-item-5"> </div>
+            <div class="grid-item-6"> </div>
+        </div>
+        <div class="teams"></div>
+
+    </div>
+
+    <script>
+        points1 = 21;
+        points2 = 21;
+        points3 = 21;
+        points4 = 21;
+        points5 = 21;
+        points6 = 21;
+
+        $(".scores").on("click", ".addPoints1", function () {
+            points1--;
+            if (points1 >= 20) {
+                points1 = 20;
+                $(".grid-item-1").css("display", "block");
+                $(".grid-item-1").css("grid-row-end", String(points1));
+            } else {
+                $(".grid-item-1").css("grid-row-end", String(points1));
+            }
+        });
+        $(".scores").on("click", ".addPoints2", function () {
+            points2--;
+            if (points2 >= 20) {
+                points2 = 20;
+                $(".grid-item-2").css("display", "block");
+                $(".grid-item-2").css("grid-row-end", String(points2));
+            } else {
+                $(".grid-item-2").css("grid-row-end", String(points2));
+            }
+        });
+        $(".scores").on("click", ".addPoints3", function () {
+            points3--;
+            if (points3 >= 20) {
+                points3 = 20;
+                $(".grid-item-3").css("display", "block");
+                $(".grid-item-3").css("grid-row-end", String(points3));
+            } else {
+                $(".grid-item-3").css("grid-row-end", String(points3));
+            }
+        });
+        $(".scores").on("click", ".addPoints4", function () {
+            points4--;
+            if (points4 >= 20) {
+                points4 = 20;
+                $(".grid-item-4").css("display", "block");
+                $(".grid-item-4").css("grid-row-end", String(points4));
+            } else {
+                $(".grid-item-4").css("grid-row-end", String(points4));
+            }
+        });
+        $(".scores").on("click", ".addPoints5", function () {
+            points5--;
+            if (points5 >= 20) {
+                points5 = 20;
+                $(".grid-item-5").css("display", "block");
+                $(".grid-item-5").css("grid-row-end", String(points5));
+            } else {
+                $(".grid-item-5").css("grid-row-end", String(points5));
+            }
+        });
+        $(".scores").on("click", ".addPoints6", function () {
+            points6--;
+            if (points6 >= 20) {
+                points6 = 20;
+                $(".grid-item-6").css("display", "block");
+                $(".grid-item-6").css("grid-row-end", String(points6));
+            } else {
+                $(".grid-item-6").css("grid-row-end", String(points6));
+            }
+        });
+
+        $(".scores").on("click", ".subtractPoints1", function () {
+            points1++;
+            if (points1 === 21) {
+                $(".grid-item-1").css("display", "none");
+            } else {
+                $(".grid-item-1").css("grid-row-end", String(points1));
+            }
+        });
+        $(".scores").on("click", ".subtractPoints2", function () {
+            points2++;
+            if (points2 === 21) {
+                $(".grid-item-2").css("display", "none");
+            } else {
+                $(".grid-item-2").css("grid-row-end", String(points2));
+            }
+        });
+        $(".scores").on("click", ".subtractPoints3", function () {
+            points3++;
+            if (points3 === 21) {
+                $(".grid-item-3").css("display", "none");
+            } else {
+                $(".grid-item-3").css("grid-row-end", String(points3));
+            }
+        });
+        $(".scores").on("click", ".subtractPoints4", function () {
+            points4++;
+            if (points4 === 21) {
+                $(".grid-item-4").css("display", "none");
+            } else {
+                $(".grid-item-4").css("grid-row-end", String(points4));
+            }
+        });
+        $(".scores").on("click", ".subtractPoints5", function () {
+            points5++;
+            if (points5 === 21) {
+                $(".grid-item-5").css("display", "none");
+            } else {
+                $(".grid-item-5").css("grid-row-end", String(points5));
+            }
+        });
+        $(".scores").on("click", ".subtractPoints6", function () {
+            points6++;
+            if (points6 === 21) {
+                $(".grid-item-6").css("display", "none");
+            } else {
+                $(".grid-item-6").css("grid-row-end", String(points6));
+            }
+        });
+
+    </script>
+
+
+</body>
+
+</html>
